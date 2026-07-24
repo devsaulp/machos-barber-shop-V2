@@ -133,7 +133,7 @@ export function PiePagina() {
         </div>
       </div>
       <p className="border-t border-acero py-4 text-center text-xs text-ceniza/60">
-        © {new Date().getFullYear()} {NEGOCIO.nombre} · Hecho con carácter en Tarapoto
+        © {new Date().getFullYear()} {NEGOCIO.nombre} · Developer´s Company
       </p>
       {/* Última franja animada */}
       <div className="franja-barbero-animada" aria-hidden="true" />
