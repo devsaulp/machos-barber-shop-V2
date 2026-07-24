@@ -1,17 +1,25 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Instagram, Facebook, MapPin, Phone, MessageCircle } from 'lucide-react';
 import { NEGOCIO, linkWhatsApp } from '@/lib/config';
 
-/* Barra de navegación pública, fija arriba */
+/* Barra de navegación pública, fija arriba — con logo e imagen */
 export function BarraNavegacion() {
   return (
     <header className="sticky top-0 z-40 border-b border-acero bg-humo/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="titulo-display text-xl text-hueso sm:text-2xl">
-          MACHOS <span className="text-laton">BARBER SHOP</span>
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
+        <Link href="/" className="flex items-center gap-3 group">
+          <Image
+            src="/images/logo-machos.jpg"
+            alt="Machos Barber Shop"
+            width={140}
+            height={50}
+            className="h-10 w-auto object-contain sm:h-12"
+            priority
+          />
         </Link>
         <nav className="flex items-center gap-4 sm:gap-6">
-          <Link href="/servicios" className="hidden text-sm font-semibold uppercase tracking-widest text-ceniza hover:text-laton sm:block">
+          <Link href="/servicios" className="hidden text-sm font-semibold uppercase tracking-widest text-ceniza hover:text-laton sm:block transition-colors">
             Servicios
           </Link>
           <Link href="/reservar" className="btn-oro px-4 py-2 text-xs sm:px-6 sm:text-sm">
@@ -19,7 +27,8 @@ export function BarraNavegacion() {
           </Link>
         </nav>
       </div>
-      <div className="franja-barbero" aria-hidden="true" />
+      {/* Única franja animada del sitio */}
+      <div className="franja-barbero-animada" aria-hidden="true" />
     </header>
   );
 }
@@ -39,17 +48,22 @@ export function BotonFlotanteWhatsApp() {
   );
 }
 
-/* Pie de página con datos de contacto y redes */
+/* Pie de página con datos de contacto y redes — franja animada al final */
 export function PiePagina() {
   return (
     <footer className="border-t border-acero bg-carbon">
-      <div className="franja-barbero" aria-hidden="true" />
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-3">
         <div>
-          <p className="titulo-display text-2xl text-hueso">
-            MACHOS <span className="text-laton">BARBER SHOP</span>
-          </p>
-          <p className="mt-2 text-sm text-ceniza">
+          <Link href="/">
+            <Image
+              src="/images/logo-machos.jpg"
+              alt="Machos Barber Shop"
+              width={160}
+              height={56}
+              className="h-12 w-auto object-contain"
+            />
+          </Link>
+          <p className="mt-3 text-sm text-ceniza">
             {NEGOCIO.eslogan}. Tarapoto, Perú.
           </p>
         </div>
@@ -68,15 +82,15 @@ export function PiePagina() {
           <p className="etiqueta">Síguenos</p>
           <div className="flex gap-3">
             <a href={NEGOCIO.redes.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-              className="flex h-10 w-10 items-center justify-center border border-acero text-ceniza hover:border-laton hover:text-laton">
+              className="flex h-10 w-10 items-center justify-center border border-acero text-ceniza hover:border-laton hover:text-laton transition-colors">
               <Instagram size={18} />
             </a>
             <a href={NEGOCIO.redes.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-              className="flex h-10 w-10 items-center justify-center border border-acero text-ceniza hover:border-laton hover:text-laton">
+              className="flex h-10 w-10 items-center justify-center border border-acero text-ceniza hover:border-laton hover:text-laton transition-colors">
               <Facebook size={18} />
             </a>
             <a href={NEGOCIO.redes.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok"
-              className="flex h-10 w-10 items-center justify-center border border-acero text-ceniza hover:border-laton hover:text-laton text-xs font-bold">
+              className="flex h-10 w-10 items-center justify-center border border-acero text-ceniza hover:border-laton hover:text-laton transition-colors text-xs font-bold">
               TT
             </a>
           </div>
@@ -85,6 +99,8 @@ export function PiePagina() {
       <p className="border-t border-acero py-4 text-center text-xs text-ceniza/60">
         © {new Date().getFullYear()} {NEGOCIO.nombre} · Hecho con carácter en Tarapoto
       </p>
+      {/* Última franja animada */}
+      <div className="franja-barbero-animada" aria-hidden="true" />
     </footer>
   );
 }

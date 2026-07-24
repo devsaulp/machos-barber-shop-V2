@@ -72,8 +72,7 @@ export default function HeroAnimado() {
         <Scissors size={80} strokeWidth={0.8} />
       </div>
 
-      {/* Animated barber stripe at top */}
-      <div className="franja-barbero-animada absolute top-0 left-0 right-0 z-10" />
+
 
       {/* Watermark */}
       <div
@@ -143,8 +142,7 @@ export default function HeroAnimado() {
         </div>
       </div>
 
-      {/* Bottom stripe */}
-      <div className="franja-barbero-animada absolute bottom-0 left-0 right-0 z-10" />
+
 
       {/* Scroll indicator */}
       <div

@@ -130,7 +130,7 @@ export default async function PaginaInicio() {
               Un espacio pensado para que te relajes, converses y salgas renovado.
             </p>
           </AnimarAlVer>
-          <div className="franja-barbero-animada absolute bottom-0 left-0 right-0" />
+
         </section>
 
         {/* ── BARBEROS ─────────────────────────────────────────────────── */}
@@ -272,7 +272,7 @@ export default async function PaginaInicio() {
               Reservar ahora
             </Link>
           </AnimarAlVer>
-          <div className="franja-barbero-animada" />
+
         </section>
       </main>
       <BotonFlotanteWhatsApp />

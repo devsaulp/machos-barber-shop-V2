@@ -10,10 +10,10 @@ export const NEGOCIO = {
   descripcion:
     'Barbería en Tarapoto. Cortes clásicos, fades, diseños freestyle y ritual de barba. Máquina, navaja y cero floro. Reserva tu cita online.',
   // ✏️ Reemplaza con la dirección real del local
-  direccion: 'Jr. San Pablo de la Cruz N° 123, Tarapoto, San Martín',
+  direccion: 'Jr. Alfonso Ugarte, Tarapoto, San Martín',
   // ✏️ Número de WhatsApp SOLO dígitos, con código de país (51 = Perú)
-  whatsapp: '51960063993',
-  whatsappBonito: '+51 960 063 993',
+  whatsapp: '51964417172',
+  whatsappBonito: '+51 964 417 172',
   horarioTexto: 'Lunes a sábado · 9:00 a.m. – 8:00 p.m.',
   // ✏️ En Google Maps: buscar el local → Compartir → Insertar mapa → copiar el src del iframe
   mapaEmbed:
