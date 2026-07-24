@@ -5,7 +5,7 @@
 // y cierre; al guardar se reemplazan los horarios del barbero.
 
 import { useCallback, useEffect, useState } from 'react';
-import { CalendarClock, Loader2, Pencil, Plus, X } from 'lucide-react';
+import { CalendarClock, Loader2, Pencil, Plus, Trash2, X } from 'lucide-react';
 import { clienteNavegador } from '@/lib/supabase/navegador';
 import { DIAS_SEMANA, horaCorta } from '@/lib/fechas';
 import type { Barbero, Horario } from '@/lib/tipos';
@@ -93,6 +93,17 @@ export default function PaginaBarberosAdmin() {
 
   async function alternarActivo(b: Barbero) {
     await clienteNavegador().from('barberos').update({ activo: !b.activo }).eq('id', b.id);
+    cargar();
+  }
+
+  async function eliminarBarbero(b: Barbero) {
+    if (!window.confirm(`¿Estás seguro de eliminar a ${b.nombre}?`)) return;
+    const sb = clienteNavegador();
+    const { error } = await sb.from('barberos').delete().eq('id', b.id);
+    if (error) {
+      setError('No se pudo eliminar el barbero. Es posible que tenga citas asociadas.');
+      return;
+    }
     cargar();
   }
 
@@ -255,6 +266,9 @@ export default function PaginaBarberosAdmin() {
                   </button>
                   <button onClick={() => alternarActivo(b)} className="btn-borde px-3 py-1.5 text-[11px]">
                     {b.activo ? 'Desactivar' : 'Activar'}
+                  </button>
+                  <button onClick={() => eliminarBarbero(b)} className="btn px-3 py-1.5 text-[11px] border border-barbero text-red-400 hover:bg-barbero hover:text-hueso">
+                    <Trash2 size={12} /> Eliminar
                   </button>
                 </div>
               </li>

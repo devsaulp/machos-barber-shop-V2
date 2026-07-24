@@ -4,7 +4,7 @@
 // Se desactiva en lugar de borrar para no romper el historial de citas.
 
 import { useCallback, useEffect, useState } from 'react';
-import { Loader2, Pencil, Plus, X } from 'lucide-react';
+import { Loader2, Pencil, Plus, Trash2, X } from 'lucide-react';
 import { clienteNavegador } from '@/lib/supabase/navegador';
 import type { Servicio } from '@/lib/tipos';
 
@@ -70,6 +70,16 @@ export default function PaginaServiciosAdmin() {
 
   async function alternarActivo(s: Servicio) {
     await clienteNavegador().from('servicios').update({ activo: !s.activo }).eq('id', s.id);
+    cargar();
+  }
+
+  async function eliminarServicio(s: Servicio) {
+    if (!window.confirm(`¿Estás seguro de eliminar el servicio "${s.nombre}"?`)) return;
+    const { error } = await clienteNavegador().from('servicios').delete().eq('id', s.id);
+    if (error) {
+      setError('No se pudo eliminar el servicio. Es posible que tenga citas asociadas.');
+      return;
+    }
     cargar();
   }
 
@@ -141,6 +151,9 @@ export default function PaginaServiciosAdmin() {
                 </button>
                 <button onClick={() => alternarActivo(s)} className="btn-borde px-3 py-1.5 text-[11px]">
                   {s.activo ? 'Desactivar' : 'Activar'}
+                </button>
+                <button onClick={() => eliminarServicio(s)} className="btn px-3 py-1.5 text-[11px] border border-barbero text-red-400 hover:bg-barbero hover:text-hueso">
+                  <Trash2 size={12} /> Eliminar
                 </button>
               </div>
             </li>

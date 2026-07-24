@@ -6,7 +6,7 @@ import { SERVICIOS_FALLBACK } from '@/lib/config';
 import { clientePublico } from '@/lib/supabase/publico';
 import type { Servicio } from '@/lib/tipos';
 
-export const revalidate = 300;
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: 'Servicios',
@@ -17,7 +17,7 @@ async function obtenerServicios(): Promise<Servicio[]> {
   try {
     const sb = clientePublico();
     const { data } = await sb.from('servicios').select('*').eq('activo', true).order('precio');
-    return data?.length ? data : (SERVICIOS_FALLBACK as Servicio[]);
+    return data !== null ? data : (SERVICIOS_FALLBACK as Servicio[]);
   } catch {
     return SERVICIOS_FALLBACK as Servicio[];
   }

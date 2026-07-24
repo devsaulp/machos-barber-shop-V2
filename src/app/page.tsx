@@ -8,8 +8,8 @@ import { NEGOCIO, SERVICIOS_FALLBACK, BARBEROS_FALLBACK, linkWhatsApp } from '@/
 import { clientePublico } from '@/lib/supabase/publico';
 import type { Barbero, Servicio } from '@/lib/tipos';
 
-// Página estática regenerada cada 5 minutos (rendimiento + datos frescos)
-export const revalidate = 300;
+// Página siempre dinámica (refleja inmediatamente cambios del panel de administración)
+export const revalidate = 0;
 
 async function obtenerCatalogo(): Promise<{ servicios: Servicio[]; barberos: Barbero[] }> {
   try {
@@ -19,8 +19,8 @@ async function obtenerCatalogo(): Promise<{ servicios: Servicio[]; barberos: Bar
       sb.from('barberos').select('*').eq('activo', true).order('nombre'),
     ]);
     return {
-      servicios: s.data?.length ? s.data : (SERVICIOS_FALLBACK as Servicio[]),
-      barberos: b.data?.length ? b.data : (BARBEROS_FALLBACK as Barbero[]),
+      servicios: s.data !== null ? s.data : (SERVICIOS_FALLBACK as Servicio[]),
+      barberos: b.data !== null ? b.data : (BARBEROS_FALLBACK as Barbero[]),
     };
   } catch {
     // Si Supabase aún no está configurado, el sitio igual carga con datos de respaldo
