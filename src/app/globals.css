@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═════════════════════════════════════════════════════════════════════════
+   MACHOS BARBER SHOP — identidad visual
+   Negro cálido + latón + rojo de poste de barbero. Esquinas rectas: aquí
+   nada es redondeado. Tipografía display condensada tipo cartel de boxeo.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --laton: #c9a227;
+  --barbero: #a32633;
+  --humo: #0c0b09;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-humo text-hueso font-body antialiased;
+  /* Textura sutil de rayado diagonal, como cuero trabajado */
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.012) 0 2px,
+    transparent 2px 8px
+  );
+}
+
+::selection {
+  background: var(--laton);
+  color: var(--humo);
+}
+
+:focus-visible {
+  outline: 2px solid var(--laton);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  /* Firma visual del sitio: la franja del poste de barbero (latón + rojo) */
+  .franja-barbero {
+    height: 8px;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--laton) 0 14px,
+      var(--humo) 14px 22px,
+      var(--barbero) 22px 36px,
+      var(--humo) 36px 44px
+    );
+  }
+
+  .titulo-display {
+    @apply font-display uppercase leading-none;
+  }
+
+  /* Texto gigante con solo contorno (efecto cartel) */
+  .texto-contorno {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--laton);
+  }
+
+  .eyebrow {
+    @apply text-xs uppercase tracking-rotulo text-laton font-semibold;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-widest transition-colors;
+  }
+  .btn-oro {
+    @apply btn bg-laton text-humo hover:bg-latonclaro;
+  }
+  .btn-borde {
+    @apply btn border-2 border-acero text-hueso hover:border-laton hover:text-laton;
+  }
+  .btn-whatsapp {
+    @apply btn border-2 border-[#25d366] text-[#25d366] hover:bg-[#25d366] hover:text-humo;
+  }
+
+  .tarjeta {
+    @apply bg-carbon border border-acero;
+  }
+
+  .campo {
+    @apply w-full bg-humo border border-acero px-3 py-2.5 text-hueso placeholder-ceniza/60 focus:border-laton focus:outline-none;
+  }
+
+  .etiqueta {
+    @apply block text-xs uppercase tracking-widest text-ceniza mb-1.5 font-semibold;
+  }
+
+  .chip-estado {
+    @apply inline-block px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider border;
+  }
+}
