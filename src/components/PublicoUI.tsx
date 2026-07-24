@@ -3,26 +3,42 @@ import Image from 'next/image';
 import { Instagram, Facebook, MapPin, Phone, MessageCircle } from 'lucide-react';
 import { NEGOCIO, linkWhatsApp } from '@/lib/config';
 
-/* Barra de navegación pública, fija arriba — con logo e imagen */
+/* Barra de navegación pública, fija arriba — con el logo circular y nombre a la derecha */
 export function BarraNavegacion() {
   return (
     <header className="sticky top-0 z-40 border-b border-acero bg-humo/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
-        <Link href="/" className="flex items-center gap-3 group">
-          <Image
-            src="/images/logo-machos.jpg"
-            alt="Machos Barber Shop"
-            width={140}
-            height={50}
-            className="h-10 w-auto object-contain sm:h-12"
-            priority
-          />
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:py-2.5">
+        <Link href="/" className="flex items-center gap-3 group focus:outline-none">
+          {/* Logo circular original en 50-60px */}
+          <div className="relative h-12 w-12 sm:h-14 sm:w-14 shrink-0 overflow-hidden rounded-full border-2 border-laton/60 shadow-lg shadow-black/60 transition-transform group-hover:scale-105 group-hover:border-laton">
+            <Image
+              src="/images/logo-machos.jpg"
+              alt="Machos Barber Shop Logo"
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 640px) 48px, 56px"
+            />
+          </div>
+          {/* Nombre a la derecha del logo */}
+          <div className="flex flex-col justify-center">
+            <span className="titulo-display text-lg sm:text-2xl text-hueso tracking-wider transition-colors group-hover:text-laton">
+              MACHOS <span className="text-laton">BARBER SHOP</span>
+            </span>
+            <span className="hidden text-[10px] font-semibold uppercase tracking-widest text-ceniza sm:block">
+              {NEGOCIO.eslogan}
+            </span>
+          </div>
         </Link>
-        <nav className="flex items-center gap-4 sm:gap-6">
-          <Link href="/servicios" className="hidden text-sm font-semibold uppercase tracking-widest text-ceniza hover:text-laton sm:block transition-colors">
+
+        <nav className="flex items-center gap-3 sm:gap-6">
+          <Link
+            href="/servicios"
+            className="hidden text-sm font-semibold uppercase tracking-widest text-ceniza transition-colors hover:text-laton sm:block"
+          >
             Servicios
           </Link>
-          <Link href="/reservar" className="btn-oro px-4 py-2 text-xs sm:px-6 sm:text-sm">
+          <Link href="/reservar" className="btn-oro px-3.5 py-2 text-xs sm:px-6 sm:text-sm">
             Reservar cita
           </Link>
         </nav>
@@ -54,14 +70,19 @@ export function PiePagina() {
     <footer className="border-t border-acero bg-carbon">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-3">
         <div>
-          <Link href="/">
-            <Image
-              src="/images/logo-machos.jpg"
-              alt="Machos Barber Shop"
-              width={160}
-              height={56}
-              className="h-12 w-auto object-contain"
-            />
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-laton/40">
+              <Image
+                src="/images/logo-machos.jpg"
+                alt="Machos Barber Shop Logo"
+                fill
+                className="object-cover"
+                sizes="48px"
+              />
+            </div>
+            <span className="titulo-display text-xl text-hueso">
+              MACHOS <span className="text-laton">BARBER SHOP</span>
+            </span>
           </Link>
           <p className="mt-3 text-sm text-ceniza">
             {NEGOCIO.eslogan}. Tarapoto, Perú.
@@ -81,16 +102,31 @@ export function PiePagina() {
         <div>
           <p className="etiqueta">Síguenos</p>
           <div className="flex gap-3">
-            <a href={NEGOCIO.redes.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-              className="flex h-10 w-10 items-center justify-center border border-acero text-ceniza hover:border-laton hover:text-laton transition-colors">
+            <a
+              href={NEGOCIO.redes.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="flex h-10 w-10 items-center justify-center border border-acero text-ceniza transition-colors hover:border-laton hover:text-laton"
+            >
               <Instagram size={18} />
             </a>
-            <a href={NEGOCIO.redes.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-              className="flex h-10 w-10 items-center justify-center border border-acero text-ceniza hover:border-laton hover:text-laton transition-colors">
+            <a
+              href={NEGOCIO.redes.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="flex h-10 w-10 items-center justify-center border border-acero text-ceniza transition-colors hover:border-laton hover:text-laton"
+            >
               <Facebook size={18} />
             </a>
-            <a href={NEGOCIO.redes.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok"
-              className="flex h-10 w-10 items-center justify-center border border-acero text-ceniza hover:border-laton hover:text-laton transition-colors text-xs font-bold">
+            <a
+              href={NEGOCIO.redes.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="flex h-10 w-10 items-center justify-center border border-acero text-xs font-bold text-ceniza transition-colors hover:border-laton hover:text-laton"
+            >
               TT
             </a>
           </div>
