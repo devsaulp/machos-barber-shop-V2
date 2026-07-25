@@ -63,7 +63,7 @@ export default function AsistenteReserva() {
 
   // ── Cargar catálogo al montar ─────────────────────────────────────────
   useEffect(() => {
-    fetch('/api/catalogo')
+    fetch(`/api/catalogo?t=${Date.now()}`, { cache: 'no-store' })
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then(setCatalogo)
       .catch(() => setErrorCatalogo(true));

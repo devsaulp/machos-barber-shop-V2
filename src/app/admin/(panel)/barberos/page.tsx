@@ -79,14 +79,30 @@ export default function PaginaBarberosAdmin() {
       descripcion: form.descripcion.trim() || null,
       foto_url: form.foto_url.trim() || null,
     };
-    const { error } = editandoId
-      ? await sb.from('barberos').update(datos).eq('id', editandoId)
-      : await sb.from('barberos').insert(datos);
-    setGuardando(false);
-    if (error) {
-      setError('No se pudo guardar el barbero.');
-      return;
+    if (editandoId) {
+      const { error } = await sb.from('barberos').update(datos).eq('id', editandoId);
+      if (error) {
+        setError('No se pudo guardar el barbero.');
+        setGuardando(false);
+        return;
+      }
+    } else {
+      const { data: nuevoBarbero, error } = await sb.from('barberos').insert(datos).select().single();
+      if (error || !nuevoBarbero) {
+        setError('No se pudo guardar el barbero.');
+        setGuardando(false);
+        return;
+      }
+      // Asignar horario por defecto al nuevo barbero (Lunes a Sábado 9am - 8pm)
+      const horariosDefecto = Array.from({ length: 6 }, (_, i) => ({
+        barbero_id: nuevoBarbero.id,
+        dia_semana: i + 1,
+        hora_apertura: '09:00',
+        hora_cierre: '20:00',
+      }));
+      await sb.from('horarios').insert(horariosDefecto);
     }
+    setGuardando(false);
     setMostrarForm(false);
     cargar();
   }

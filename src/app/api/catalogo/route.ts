@@ -4,6 +4,7 @@ import { clienteAdmin } from '@/lib/supabase/admin';
 // Catálogo público: servicios y barberos activos + días de atención.
 // Lo consume el asistente de reservas. Siempre dinámico (datos frescos).
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET() {
   try {
@@ -14,11 +15,18 @@ export async function GET() {
       sb.from('horarios').select('barbero_id, dia_semana'),
     ]);
 
-    return NextResponse.json({
-      servicios: servicios.data ?? [],
-      barberos: barberos.data ?? [],
-      horarios: horarios.data ?? [],
-    });
+    return NextResponse.json(
+      {
+        servicios: servicios.data ?? [],
+        barberos: barberos.data ?? [],
+        horarios: horarios.data ?? [],
+      },
+      {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        },
+      }
+    );
   } catch {
     return NextResponse.json({ error: 'No se pudo cargar el catálogo.' }, { status: 500 });
   }
