@@ -77,7 +77,5 @@ export const SERVICIOS_FALLBACK = [
   { id: 'f4', nombre: 'Diseño freestyle', descripcion: 'Líneas, tribales o el diseño que te atrevas a pedir. Precisión milimétrica.', duracion_min: 40, precio: 25, activo: true },
 ];
 
-export const BARBEROS_FALLBACK = [
-  { id: 'b1', nombre: 'Carlos «El Patrón» Ramírez', descripcion: 'Fundador. Cortes clásicos, fades y navaja tradicional. 10 años domando melenas.', foto_url: null, activo: true },
-  { id: 'b2', nombre: 'Jorge «El Navaja» Torres', descripcion: 'Diseños freestyle, cejas y barbas. Pulso de cirujano, actitud de campeón.', foto_url: null, activo: true },
-];
+export const BARBEROS_FALLBACK: Array<{ id: string; nombre: string; descripcion: string | null; foto_url: string | null; activo: boolean }> = [];
+
