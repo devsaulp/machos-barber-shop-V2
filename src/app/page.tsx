@@ -88,14 +88,24 @@ export default async function PaginaInicio() {
                 key={s.id}
                 className="tarjeta tarjeta-interactiva group flex items-start justify-between gap-4 p-6 hover:border-laton"
               >
-                <div>
-                  <h3 className="font-body text-lg font-bold uppercase tracking-wide text-hueso group-hover:text-laton transition-colors">
-                    {s.nombre}
-                  </h3>
-                  {s.descripcion && <p className="mt-1 text-sm text-ceniza">{s.descripcion}</p>}
-                  <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-ceniza">
-                    <Clock size={13} className="text-laton" /> {s.duracion_min} min
-                  </p>
+                <div className="flex items-start gap-4">
+                  {s.foto_url && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={s.foto_url}
+                      alt={s.nombre}
+                      className="h-16 w-16 shrink-0 border border-laton object-cover group-hover:scale-105 transition-transform"
+                    />
+                  )}
+                  <div>
+                    <h3 className="font-body text-lg font-bold uppercase tracking-wide text-hueso group-hover:text-laton transition-colors">
+                      {s.nombre}
+                    </h3>
+                    {s.descripcion && <p className="mt-1 text-sm text-ceniza">{s.descripcion}</p>}
+                    <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-ceniza">
+                      <Clock size={13} className="text-laton" /> {s.duracion_min} min
+                    </p>
+                  </div>
                 </div>
                 <p className="titulo-display shrink-0 text-3xl text-laton group-hover:scale-110 transition-transform">
                   S/{Number(s.precio).toFixed(0)}

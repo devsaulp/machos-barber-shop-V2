@@ -10,7 +10,7 @@ export async function GET() {
   try {
     const sb = clienteAdmin();
     const [servicios, barberos, horarios] = await Promise.all([
-      sb.from('servicios').select('id, nombre, descripcion, duracion_min, precio').eq('activo', true).order('precio'),
+      sb.from('servicios').select('id, nombre, descripcion, duracion_min, precio, foto_url').eq('activo', true).order('precio'),
       sb.from('barberos').select('id, nombre, descripcion, foto_url').eq('activo', true).order('nombre'),
       sb.from('horarios').select('barbero_id, dia_semana'),
     ]);

@@ -18,6 +18,7 @@ interface ServicioCatalogo {
   descripcion: string | null;
   duracion_min: number;
   precio: number;
+  foto_url?: string | null;
 }
 interface BarberoCatalogo {
   id: string;
@@ -262,10 +263,16 @@ export default function AsistenteReserva() {
                   onClick={() => { setServicio(s); setPaso(1); }}
                   className={`tarjeta flex items-center justify-between gap-4 p-4 text-left transition-colors hover:border-laton ${servicio?.id === s.id ? 'border-laton' : ''}`}
                 >
-                  <span>
-                    <span className="block font-bold uppercase tracking-wide text-hueso">{s.nombre}</span>
-                    <span className="mt-0.5 flex items-center gap-1 text-xs text-ceniza">
-                      <Clock size={12} /> {s.duracion_min} min
+                  <span className="flex items-center gap-3">
+                    {s.foto_url && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={s.foto_url} alt={s.nombre} className="h-12 w-12 shrink-0 border border-laton object-cover" />
+                    )}
+                    <span>
+                      <span className="block font-bold uppercase tracking-wide text-hueso">{s.nombre}</span>
+                      <span className="mt-0.5 flex items-center gap-1 text-xs text-ceniza">
+                        <Clock size={12} /> {s.duracion_min} min
+                      </span>
                     </span>
                   </span>
                   <span className="titulo-display text-2xl text-laton">S/{Number(s.precio).toFixed(0)}</span>

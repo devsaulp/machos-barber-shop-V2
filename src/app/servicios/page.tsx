@@ -42,12 +42,18 @@ export default async function PaginaServicios() {
         <div className="mt-10 divide-y divide-acero border border-acero">
           {servicios.map((s) => (
             <article key={s.id} className="flex items-start justify-between gap-4 p-6">
-              <div>
-                <h2 className="font-body text-xl font-bold uppercase tracking-wide text-hueso">{s.nombre}</h2>
-                {s.descripcion && <p className="mt-1 text-sm text-ceniza">{s.descripcion}</p>}
-                <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-ceniza">
-                  <Clock size={13} className="text-laton" /> {s.duracion_min} minutos
-                </p>
+              <div className="flex items-start gap-4">
+                {s.foto_url && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={s.foto_url} alt={s.nombre} className="h-16 w-16 shrink-0 border border-laton object-cover" />
+                )}
+                <div>
+                  <h2 className="font-body text-xl font-bold uppercase tracking-wide text-hueso">{s.nombre}</h2>
+                  {s.descripcion && <p className="mt-1 text-sm text-ceniza">{s.descripcion}</p>}
+                  <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-ceniza">
+                    <Clock size={13} className="text-laton" /> {s.duracion_min} minutos
+                  </p>
+                </div>
               </div>
               <p className="titulo-display shrink-0 text-4xl text-laton">S/{Number(s.precio).toFixed(0)}</p>
             </article>

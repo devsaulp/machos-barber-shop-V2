@@ -14,6 +14,7 @@ export interface Servicio {
   descripcion: string | null;
   duracion_min: number;
   precio: number;
+  foto_url: string | null;
   activo: boolean;
 }
 
