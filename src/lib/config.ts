@@ -17,7 +17,7 @@ export const NEGOCIO = {
   horarioTexto: 'Lunes a sábado · 9:00 a.m. – 8:00 p.m.',
   // ✏️ En Google Maps: buscar el local → Compartir → Insertar mapa → copiar el src del iframe
   mapaEmbed:
-    'https://maps.app.goo.gl/5DYH3UyX9ev3ri32A',
+    'https://www.google.com/maps?q=Plaza+de+Armas+Tarapoto+Peru&output=embed',
   redes: {
     instagram: 'https://instagram.com/machosbarbershop',
     facebook: 'https://facebook.com/machosbarbershop',
