@@ -200,23 +200,23 @@ export default function PaginaServiciosAdmin() {
           {/* Subir foto del servicio (.png o .jpg) */}
           <div>
             <label className="etiqueta">Foto del servicio (.png, .jpg, .webp)</label>
-            <div className="mt-1.5 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-1.5 flex flex-col gap-4 sm:flex-row sm:items-center">
               {form.foto_url ? (
-                <div className="relative h-20 w-20 shrink-0 overflow-hidden border border-laton bg-humo">
+                <div className="relative h-28 w-28 sm:h-32 sm:w-32 shrink-0 overflow-hidden border-2 border-laton bg-humo shadow-md">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={form.foto_url} alt="Vista previa" className="h-full w-full object-cover" />
                   <button
                     type="button"
                     onClick={() => setForm({ ...form, foto_url: '' })}
-                    className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center bg-barbero text-hueso"
+                    className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center bg-barbero text-hueso shadow"
                     title="Quitar foto"
                   >
-                    <X size={12} />
+                    <X size={14} />
                   </button>
                 </div>
               ) : (
-                <div className="flex h-20 w-20 shrink-0 items-center justify-center border border-dashed border-acero bg-humo text-ceniza">
-                  <ImageIcon size={24} />
+                <div className="flex h-28 w-28 sm:h-32 sm:w-32 shrink-0 items-center justify-center border-2 border-dashed border-acero bg-humo text-ceniza">
+                  <ImageIcon size={32} />
                 </div>
               )}
 
@@ -232,7 +232,7 @@ export default function PaginaServiciosAdmin() {
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
                   disabled={procesandoFoto}
-                  className="btn-borde py-2 px-3 text-xs w-full sm:w-auto"
+                  className="btn-borde py-2.5 px-4 text-xs w-full sm:w-auto"
                 >
                   {procesandoFoto ? (
                     <Loader2 className="animate-spin" size={14} />
@@ -266,10 +266,10 @@ export default function PaginaServiciosAdmin() {
               <div className="flex items-center gap-4">
                 {s.foto_url ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={s.foto_url} alt={s.nombre} className="h-14 w-14 shrink-0 border border-laton object-cover" />
+                  <img src={s.foto_url} alt={s.nombre} className="h-20 w-20 shrink-0 border-2 border-laton object-cover shadow-sm" />
                 ) : (
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-acero bg-humo text-ceniza">
-                    <ImageIcon size={20} />
+                  <div className="flex h-20 w-20 shrink-0 items-center justify-center border border-acero bg-humo text-ceniza">
+                    <ImageIcon size={24} />
                   </div>
                 )}
                 <div>

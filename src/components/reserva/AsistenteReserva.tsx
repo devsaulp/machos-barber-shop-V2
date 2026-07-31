@@ -263,19 +263,22 @@ export default function AsistenteReserva() {
                   onClick={() => { setServicio(s); setPaso(1); }}
                   className={`tarjeta flex items-center justify-between gap-4 p-4 text-left transition-colors hover:border-laton ${servicio?.id === s.id ? 'border-laton' : ''}`}
                 >
-                  <span className="flex items-center gap-3">
+                  <span className="flex items-center gap-4">
                     {s.foto_url && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={s.foto_url} alt={s.nombre} className="h-12 w-12 shrink-0 border border-laton object-cover" />
+                      <span className="relative h-20 w-20 sm:h-24 sm:w-24 shrink-0 overflow-hidden border-2 border-laton/80 shadow-md">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={s.foto_url} alt={s.nombre} className="h-full w-full object-cover" />
+                      </span>
                     )}
                     <span>
-                      <span className="block font-bold uppercase tracking-wide text-hueso">{s.nombre}</span>
-                      <span className="mt-0.5 flex items-center gap-1 text-xs text-ceniza">
-                        <Clock size={12} /> {s.duracion_min} min
+                      <span className="block font-bold uppercase tracking-wide text-hueso text-base sm:text-lg">{s.nombre}</span>
+                      {s.descripcion && <span className="block mt-0.5 text-xs text-ceniza line-clamp-2">{s.descripcion}</span>}
+                      <span className="mt-1.5 flex items-center gap-1 text-xs font-semibold text-ceniza">
+                        <Clock size={12} className="text-laton" /> {s.duracion_min} min
                       </span>
                     </span>
                   </span>
-                  <span className="titulo-display text-2xl text-laton">S/{Number(s.precio).toFixed(0)}</span>
+                  <span className="titulo-display shrink-0 text-2xl sm:text-3xl text-laton">S/{Number(s.precio).toFixed(0)}</span>
                 </button>
               ))}
             </div>
